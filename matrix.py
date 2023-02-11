@@ -1,3 +1,6 @@
+from random import randint
+import copy
+
 # Create a matrix based on the lines and columns given by the user
 def createMatrix():
     columns = input("How many Columns ? :") # str
@@ -27,13 +30,25 @@ def createIdentityMatrixWithParameters(lines,columns):
                 matrix[i].append(int(i==j))
     return matrix
 
+# Create a matrix with random values baed on the lines and columns given by the user
+
+def createRandomMatrix():
+    columns = input("How many Columns ? :") # str
+    lines = input("How many Lines ? :") # str
+    matrix = []
+    for i in range(int(lines)):
+            matrix.append([])
+            for j in range(int(columns)):
+                matrix[i].append(randint(1,100))
+    return matrix
+
 # Sum 2 matrixes to make a third one
 def addMatrix(matrix1,matrix2):
     matrix = []
     if numberOfColumns(matrix1) == numberOfColumns(matrix2):
         if numberOfLines(matrix1) == numberOfLines(matrix2):
             
-            matrix = matrix1
+            matrix = copy.deepcopy(matrix1) # we copy the elements of matrix1 into matrix using the copy module , else, matrix and matrix1 would be the same matrix
             for i in range(numberOfLines(matrix1)):
                 for j in range(numberOfColumns(matrix1)):
                     matrix[i][j] = matrix1[i][j] + matrix2[i][j]
@@ -93,8 +108,20 @@ def showColumn(matrix, column):
 
 #---------------------------------------------------------
 
-matrixIdentity = createIdentityMatrixWithParameters(2,2)
-showMatrix(matrixIdentity)
+matrix1 = createRandomMatrix()
+showMatrix(matrix1)
+print()
+matrixIdentity = createIdentityMatrixWithParameters(numberOfLines(matrix1),numberOfColumns(matrix1))
+print()
+
+matrixsum= addMatrix(matrix1,matrixIdentity)
+showMatrix(matrixsum)
+print()
+
+"""matrixproduct = productMatrix(matrix1,matrixIdentity)
+showMatrix(matrixproduct)
+print()"""
+showMatrix(matrix1)
 
 """matrix1 = createMatrix()
 showMatrix(matrix1)
