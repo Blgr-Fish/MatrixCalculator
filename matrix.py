@@ -49,6 +49,9 @@ def createTransposeMatrix(matrix):
             matrixOut[i][j] = matrix[j][i]
     return matrixOut    
     
+# Create a permuted matrix two lines of a given matrix and its two lines
+def createPermutationMatrix(line1,line2,matrix):
+    return 
 
 # Sum 2 matrixes to make a third one
 def addMatrix(matrix1,matrix2):
