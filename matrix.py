@@ -31,7 +31,6 @@ def createIdentityMatrixWithParameters(lines,columns):
     return matrix
 
 # Create a matrix with random values baed on the lines and columns given by the user
-
 def createRandomMatrix():
     columns = input("How many Columns ? :") # str
     lines = input("How many Lines ? :") # str
@@ -41,6 +40,15 @@ def createRandomMatrix():
             for j in range(int(columns)):
                 matrix[i].append(randint(1,100))
     return matrix
+
+# Create a transpose of a given matrix
+def createTransposeMatrix(matrix):
+    matrixOut = createEmptyMatrixWithParameters(numberOfColumns(matrix),numberOfLines(matrix))
+    for i in range(numberOfLines(matrixOut)):
+        for j in range(numberOfColumns(matrixOut)):
+            matrixOut[i][j] = matrix[j][i]
+    return matrixOut    
+    
 
 # Sum 2 matrixes to make a third one
 def addMatrix(matrix1,matrix2):
@@ -114,13 +122,10 @@ print()
 matrixIdentity = createIdentityMatrixWithParameters(numberOfLines(matrix1),numberOfColumns(matrix1))
 print()
 
-matrixsum= addMatrix(matrix1,matrixIdentity)
-showMatrix(matrixsum)
+transposematrix = createTransposeMatrix(matrix1)
+showMatrix(transposematrix)
 print()
 
-"""matrixproduct = productMatrix(matrix1,matrixIdentity)
-showMatrix(matrixproduct)
-print()"""
 showMatrix(matrix1)
 
 """matrix1 = createMatrix()
