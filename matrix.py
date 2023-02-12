@@ -49,9 +49,19 @@ def createTransposeMatrix(matrix):
             matrixOut[i][j] = matrix[j][i]
     return matrixOut    
     
-# Create a permuted matrix two lines of a given matrix and its two lines
-def createPermutationMatrix(line1,line2,matrix):
-    return 
+# Create a line permuted matrix two lines of a given matrix and its two lines and product it with the given matrix
+def createLinePermutationMatrix(line1,line2,matrix):
+    permutedMatrix = createIdentityMatrixWithParameters(numberOfLines(matrix),numberOfColumns(matrix))
+    permutedMatrix[line1-1], permutedMatrix[line2-1] = permutedMatrix[line2-1], permutedMatrix[line1-1]
+
+    return productMatrix(permutedMatrix,matrix)
+
+# Create a column permuted matrix two lines of a given matrix and its two lines and product it with the given matrix
+def createColumnPermutationMatrix(line1,line2,matrix):
+    permutedMatrix = createIdentityMatrixWithParameters(numberOfLines(matrix),numberOfColumns(matrix))
+    permutedMatrix[line1-1], permutedMatrix[line2-1] = permutedMatrix[line2-1], permutedMatrix[line1-1]
+
+    return productMatrix(matrix,permutedMatrix)
 
 # Sum 2 matrixes to make a third one
 def addMatrix(matrix1,matrix2):
@@ -59,7 +69,7 @@ def addMatrix(matrix1,matrix2):
     if numberOfColumns(matrix1) == numberOfColumns(matrix2):
         if numberOfLines(matrix1) == numberOfLines(matrix2):
             
-            matrix = copy.deepcopy(matrix1) # we copy the elements of matrix1 into matrix using the copy module , else, matrix and matrix1 would be the same matrix
+            matrix = createEmptyMatrixWithParameters(numberOfLines(matrix1),numberOfColumns(matrix1))
             for i in range(numberOfLines(matrix1)):
                 for j in range(numberOfColumns(matrix1)):
                     matrix[i][j] = matrix1[i][j] + matrix2[i][j]
@@ -115,27 +125,19 @@ def showColumn(matrix, column):
     showMatrix(column_temp)
 
 
-
-
 #---------------------------------------------------------
 
 matrix1 = createRandomMatrix()
 showMatrix(matrix1)
 print()
-matrixIdentity = createIdentityMatrixWithParameters(numberOfLines(matrix1),numberOfColumns(matrix1))
+#matrixIdentity = createIdentityMatrixWithParameters(numberOfLines(matrix1),numberOfColumns(matrix1))
+#print()
+
+matrix3 = createLinePermutationMatrix(1,3,matrix1)
+showMatrix(matrix3)
 print()
+matrix3 = createColumnPermutationMatrix(1,3,matrix1)
+showMatrix(matrix3)
 
-transposematrix = createTransposeMatrix(matrix1)
-showMatrix(transposematrix)
 print()
-
 showMatrix(matrix1)
-
-"""matrix1 = createMatrix()
-showMatrix(matrix1)
-
-matrix2 = createMatrix()
-showMatrix(matrix2)
-
-matrix3 = productMatrix(matrix1,matrix2)
-showMatrix(matrix3)"""
