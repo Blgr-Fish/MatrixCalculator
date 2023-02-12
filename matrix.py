@@ -30,6 +30,17 @@ def createIdentityMatrixWithParameters(lines,columns):
                 matrix[i].append(int(i==j))
     return matrix
 
+# Create an identity matrix filled with 1 in the diagonal, else 0.
+def createIdentityMatrix():
+    matrix = []
+    columns = input("How many Columns ? :") # str
+    lines = input("How many Lines ? :") # str
+    for i in range(int(lines)):
+            matrix.append([])
+            for j in range(int(columns)):
+                matrix[i].append(int(i==j))
+    return matrix
+
 # Create a matrix with random values baed on the lines and columns given by the user
 def createRandomMatrix():
     columns = input("How many Columns ? :") # str
@@ -127,7 +138,7 @@ def showColumn(matrix, column):
 
 #---------------------------------------------------------
 
-matrix1 = createRandomMatrix()
+"""matrix1 = createRandomMatrix()
 showMatrix(matrix1)
 print()
 #matrixIdentity = createIdentityMatrixWithParameters(numberOfLines(matrix1),numberOfColumns(matrix1))
@@ -140,4 +151,57 @@ matrix3 = createColumnPermutationMatrix(1,3,matrix1)
 showMatrix(matrix3)
 
 print()
-showMatrix(matrix1)
+showMatrix(matrix1) """
+
+selectMatrix = int(input("Menu:\n1.Create your own matrix\n2.Create a random matrix\n3.Create an Identity matrix\nValue : "))
+matrix = []
+if selectMatrix == 1 : 
+    matrix = createMatrix()
+elif selectMatrix == 2 :
+    matrix = createRandomMatrix()
+else :
+    matrix = createIdentityMatrix()
+
+showMatrix(matrix)
+print()
+
+operationMatrix = int(input("Operation:\n1.Sum a matrix\n2.Product a matrix\n3.Permute a matrix\n4.Transpose a matrix\nValue : "))
+secondMatrix = []
+resultMatrix = []
+if operationMatrix == 1 :
+    selectMatrix = int(input("Menu:\n1.Create your second own matrix\n2.Create a second random matrix\n3.Create a second Identity matrix\nValue : "))
+    if selectMatrix == 1 : 
+        secondMatrix = createMatrix()
+    elif selectMatrix == 2 :
+        secondMatrix = createRandomMatrix()
+    else :
+        secondMatrix = createIdentityMatrix()
+    resultMatrix = addMatrix(matrix,secondMatrix)
+elif operationMatrix == 2 :
+    selectMatrix = int(input("Menu:\n1.Create your second own matrix\n2.Create a second random matrix\n3.Create a second Identity matrix\nValue : "))
+    if selectMatrix == 1 : 
+        secondMatrix = createMatrix()
+    elif selectMatrix == 2 :
+        secondMatrix = createRandomMatrix()
+    else :
+        secondMatrix = createIdentityMatrix()
+    resultMatrix = productMatrix(matrix,secondMatrix)
+elif operationMatrix == 3 :
+    selectMatrix = int(input("Menu:\n1.Line permuntation\n2.Column permutation\nValue : "))
+    permute1 = int(input("Select the line to permute : "))
+    permute2 = int(input("Select the second line to permute : "))
+
+    if selectMatrix == 1 :
+        resultMatrix = createLinePermutationMatrix(permute1,permute2,matrix)
+    else :
+        resultMatrix = createColumnPermutationMatrix(permute1,permute2,matrix)
+
+    
+    
+
+
+    
+
+
+
+
