@@ -140,10 +140,13 @@ def showColumn(matrix, column):
 
 selectMatrix = int(input("Menu:\n1.Create your own matrix\n2.Create a random matrix\n3.Create an Identity matrix\nValue : "))
 matrix = []
+
 if selectMatrix == 1 : 
     matrix = createMatrix()
+
 elif selectMatrix == 2 :
     matrix = createRandomMatrix()
+
 else :
     matrix = createIdentityMatrix()
 
@@ -153,34 +156,44 @@ print()
 operationMatrix = int(input("Operation:\n1.Sum a matrix\n2.Product a matrix\n3.Permute a matrix\n4.Transpose a matrix\nValue : "))
 secondMatrix = []
 resultMatrix = []
+
 if operationMatrix == 1 :
     selectMatrix = int(input("Menu:\n1.Create your second own matrix\n2.Create a second random matrix\n3.Create a second Identity matrix\nValue : "))
+
     if selectMatrix == 1 : 
         secondMatrix = createMatrix()
+
     elif selectMatrix == 2 :
         secondMatrix = createRandomMatrix()
+
     else :
         secondMatrix = createIdentityMatrix()
     resultMatrix = addMatrix(matrix,secondMatrix)
+
 elif operationMatrix == 2 :
     selectMatrix = int(input("Menu:\n1.Create your second own matrix\n2.Create a second random matrix\n3.Create a second Identity matrix\nValue : "))
+
     if selectMatrix == 1 : 
         secondMatrix = createMatrix()
+
     elif selectMatrix == 2 :
         secondMatrix = createRandomMatrix()
+
     else :
-        secondMatrix = createIdentityMatrix()
+        secondMatrix = createIdentityMatrix()    
     resultMatrix = productMatrix(matrix,secondMatrix)
+
 elif operationMatrix == 3 :
     selectMatrix = int(input("Menu:\n1.Line permuntation\n2.Column permutation\nValue : "))
     
-
     if selectMatrix == 1 :
+        
         permute1 = int(input("Select the line to permute : "))
         permute2 = int(input("Select the second line to permute : "))
         resultMatrix = createLinePermutationMatrix(permute1,permute2,matrix)
 
     else :
+        
         permute1 = int(input("Select the column to permute : "))
         permute2 = int(input("Select the second column to permute : "))
         resultMatrix = createColumnPermutationMatrix(permute1,permute2,matrix)
